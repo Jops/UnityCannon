@@ -6,7 +6,7 @@ public class Splode : MonoBehaviour
     public float power = 10.0F;
     public float uplift = 1f;
 
-    void Start()
+    public void Start()
     {
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere( explosionPos, radius );
