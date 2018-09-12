@@ -53,7 +53,7 @@ Unique features of 3D objects, how they move, operate and live are controlled by
 	* Behaviours should be a small and reusable as possible sticking to a single job ("Behaviour") named to reference what it is they do.
 1. Open the new script in an editor of your choice (Unity comes with MonoDevelop or Visual Studio).
 1. Make the behaviour continuously rotate the component it is part of (its parent object).
-	* ```csharp
+	```csharp
 	...
 
 	public void Update()
@@ -75,7 +75,7 @@ Unique features of 3D objects, how they move, operate and live are controlled by
 ### Exercise 3 - Editor visibility
 You'll notice the Gun in the previous exercise doesn't rotate very fast. We could change that in the behaviour script, but then we'd be missing out on a powerful feature of the Unity IDE. Instead we're going to easily make the rate of rotation editable in the [Inspector Window](https://docs.unity3d.com/Manual/UsingTheInspector.html).
 1. Edit your behaviour script for rotating the Gun. Within the `transform.Rotate` method call, refactor the first parameter (Vector3) into a public class member.
-	* ```csharp
+	```csharp
 	public Vector3 rotateBy = new Vector3( 0f, 10f, 0f );
 	```
 	* save the change and go back to the Unity IDE.
@@ -86,7 +86,10 @@ You'll notice the Gun in the previous exercise doesn't rotate very fast. We coul
 A controller is a simple behaviour which governs an entity and its local children which make it up. It should not be complicated or packed full of responsibilities, but can serve as a means of defining a more specific function (or set of) for a 3D object as a 'thing'.
 1. Create and add a new component to the Gun object, name it "GunController". Which object it is added to changes the scope for local properties in the script. You could add it to the `UnfinishedCannon` calling it "CannonController"; in this example scope is unaffected as no local components are controlled by this script, only the components of child objects.
 1. Edit the script to have one public method called "Fire".
-	* Add the following debug message into the scope of the "Fire" method. ```csharp Debug.Log("Fire"); ```
+	* Add the following debug message into the scope of the "Fire" method.
+	```csharp
+	Debug.Log("Fire");
+	```
 1. Edit the script to call the new "Fire" method in the public lifecycle method "Start". (a lifecycle method is inherited by any Monobehaviour class and you can read about their [Execution Order](https://docs.unity3d.com/Manual/ExecutionOrder.html)).
 1. When running this in the IDE observe how the debug message appears in the [Console Window](https://docs.unity3d.com/Manual/Console.html).
 
