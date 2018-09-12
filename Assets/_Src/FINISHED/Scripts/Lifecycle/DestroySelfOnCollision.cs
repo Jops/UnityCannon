@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public class DestroySelfOnCollision : MonoBehaviour
+namespace FinishedExample
 {
-    public void OnCollisionEnter( Collision collision )
+    public class DestroySelfOnCollision : MonoBehaviour
     {
-        Destroy( gameObject );
+        public void OnCollisionEnter( Collision collision )
+        {
+            Destroy( gameObject );
+        }
     }
 }

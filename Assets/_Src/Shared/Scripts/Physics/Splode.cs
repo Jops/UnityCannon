@@ -12,10 +12,10 @@ public class Splode : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere( explosionPos, radius );
         foreach( Collider hit in colliders )
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            Rigidbody rigidBody = hit.GetComponent<Rigidbody>();
 
-            if( rb != null )
-                rb.AddExplosionForce( power, explosionPos, radius, uplift );
+            if( rigidBody != null )
+                rigidBody.AddExplosionForce( power, explosionPos, radius, uplift );
         }
     }
 }

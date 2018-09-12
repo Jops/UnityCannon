@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 
-public class DestroySelf : MonoBehaviour
+namespace FinishedExample
 {
-    [Tooltip( "Time To Live" )]
-    public float TTL = 5f;
-
-    public void Start()
+    public class DestroySelf : MonoBehaviour
     {
-        Destroy( gameObject, TTL );
+        [Tooltip( "Time To Live" )]
+        public float TTL = 5f;
+
+        public void Start()
+        {
+            Destroy( gameObject, TTL );
+        }
     }
 }

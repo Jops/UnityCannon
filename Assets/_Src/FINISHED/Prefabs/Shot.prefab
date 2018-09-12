@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54221822439063372}
   - component: {fileID: 114035793582967204}
   - component: {fileID: 114590223872466082}
+  - component: {fileID: 114670674037814906}
   m_Layer: 0
   m_Name: Shot
   m_TagString: Untagged
@@ -125,6 +126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c14e18926f747f481166ea93b762f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114670674037814906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1113504390185546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3459e6434f349d3a924c761678c43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TTL: 1.5
 --- !u!135 &135882909668497506
 SphereCollider:
   m_ObjectHideFlags: 1

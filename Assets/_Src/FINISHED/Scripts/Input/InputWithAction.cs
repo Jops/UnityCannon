@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class InputWithAction : MonoBehaviour
+namespace FinishedExample
 {
-    public KeyCode keyCode = KeyCode.Space;
-    public UnityEvent action;
-
-    public void Update()
+    public class InputWithAction : MonoBehaviour
     {
-        if( Input.GetKeyUp( keyCode ) )
+        public KeyCode keyCode = KeyCode.Space;
+        public UnityEvent action;
+
+        public void Update()
         {
-            action.Invoke();
+            if( Input.GetKeyUp( keyCode ) )
+            {
+                action.Invoke();
+            }
         }
     }
 }
