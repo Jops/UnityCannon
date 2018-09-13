@@ -55,14 +55,14 @@ Unique features of 3D objects, how they move, operate and live are controlled by
 	* Behaviours should be a small and reusable as possible sticking to a single job ("Behaviour") named to reference what it is they do.
 1. Open the new script in an editor of your choice (Unity comes with MonoDevelop or Visual Studio).
 1. Make the behaviour continuously rotate the component it is part of (its parent object).
-		```csharp
-		...
+	```csharp
+	...
 
-		public void Update()
-	    {
-	        transform.Rotate( new Vector3( 0f, 10f, 0f ) * Time.deltaTime, Space.World );
-	    }
-		```
+	public void Update()
+    {
+        transform.Rotate( new Vector3( 0f, 10f, 0f ) * Time.deltaTime, Space.World );
+    }
+	```
 	* This should rotate the 3D object by its y-axis by 10 degrees (euler angle) in relation to its world (think global) transformation matrix.
 1. To add the new component to the Cannon's Gun:
 	* Drag-and-drop your new script from the scripts folder to the 'UnfinishedCannon -> Gun' object in your scene (not in the project window `/Prefabs`).
@@ -78,9 +78,9 @@ Unique features of 3D objects, how they move, operate and live are controlled by
 ### Exercise 3 - Editor visibility
 You'll notice the Gun in the previous exercise doesn't rotate very fast. We could change that in the behaviour script, but then we'd be missing out on a powerful feature of the Unity IDE. Instead we're going to make the rate of rotation editable in the [Inspector Window](https://docs.unity3d.com/Manual/UsingTheInspector.html).
 1. Edit your behaviour script for rotating the Gun. Within the `transform.Rotate` method call, refactor the first parameter (Vector3) into a public class member.
-		```csharp
-		public Vector3 rotateBy = new Vector3( 0f, 10f, 0f );
-		```
+	```csharp
+	public Vector3 rotateBy = new Vector3( 0f, 10f, 0f );
+	```
 	* save the change and go back to the Unity IDE.
 1. Click the Gun object to bring up its components in the Inspector. Once Unity updates for the external script modification you should see the behaviour now has an editable field for the new publicly scoped property.
 	* Changing the values in the Inspector window will modify values for the instance of the object in the scene. It won't change prefab versions of the object or the script.
@@ -91,16 +91,16 @@ A controller is a simple behaviour which governs an entity and its local childre
 1. Create and add a new component to the Gun object, name it "GunController". Which object it is added to changes the scope for local properties in the script. You could add it to the `UnfinishedCannon` calling it "CannonController"; in this example scope is unaffected as no local components are controlled by this script, only the components of child objects.
 1. Edit the script to have one public method called "Fire".
 	* Add the following debug message into the scope of the "Fire" method.
-		```csharp
-		Debug.Log("Fired");
-		```
+	```csharp
+	Debug.Log("Fired");
+	```
 1. Edit the script to call the new "Fire" method in the public lifecycle method "Start". (a lifecycle method is inherited by any Monobehaviour class and you can read about their [Execution Order](https://docs.unity3d.com/Manual/ExecutionOrder.html)).
-		```csharp
-		public void Start()
-	    {
-	        Fire();
-	    }
-		```
+	```csharp
+	public void Start()
+    {
+        Fire();
+    }
+	```
 1. When running this in the IDE observe how the debug message appears in the [Console Window](https://docs.unity3d.com/Manual/Console.html).
 
 
@@ -117,9 +117,9 @@ Now that we have a firing instruction with the cannon; we need something to shoo
 1. You can delete the object from the scene as instances of it will be created from the cannon in the next exercises.
 #### 5.c - Inform the cannon
 1. Modify the "GunController" script from earlier to have a new public property typed `GameObject` named "cannonShotPrefab"
-		```csharp
-		public GameObject cannonShotPrefab;
-		```
+	```csharp
+	public GameObject cannonShotPrefab;
+	```
 	* Back in the Unity IDE drag-and-drop the new prefab from the `/prefabs` folder you created in the [Project Window](https://docs.unity3d.com/Manual/ProjectView.html) to the [Inspector Window](https://docs.unity3d.com/Manual/UsingTheInspector.html) when the Gun object is selected in the scene. This will update the GunController component (Behaviour) of cannon in the scene with a fixed reference to the cannon shot you want to fire.
 	* You can also select the prefab by clicking the small icon to the right of the "Cannon Shot Prefab" property field; which will bring up a search window.
 
@@ -140,18 +140,18 @@ Before we can instantiate the cannon shot prefab, we'll need to know where to in
 1. Rename the empty object something memorable... "ProjectileSpawnPoint".
 #### 6.a.1 - Again, inform the cannon
 1. Modify the "GunController" script made earlier to have one new public property typed `Transform` named "barrelPoint".
-		```csharp
-		public Transform barrelPoint;
-		```
+	```csharp
+	public Transform barrelPoint;
+	```
 1. In the Unity Inspector window drag-and-drop or select the "ProjectileSpawnPoint" for the cannon in the scene.
 	* You'll see that because the property type is `Transform` (which is a component present in the "ProjectileSpawnPoint" object) the assignment will not be rejected and the `Transform` component of the object is referenced here. As opposed to the previous example for prefabs which requires the type `GameObject`.
 #### 6.b - Spawn the Shot as a projectile
 Now for the good part, when the Fire method is called in the GunController script (behaviour) we want a cannon shot to appear out the end of the gun barrel.
 1. Return to the Fire method of the GunController and add a call to `Instantiate` the cannon shot prefab held by the controller as a public property.
 	* Remembering to use the `barrelPoint` property defined earlier.
-		```csharp
-		Instantiate( cannonShotPrefab, barrelPoint.position, barrelPoint.rotation );
-		```
+	```csharp
+	Instantiate( cannonShotPrefab, barrelPoint.position, barrelPoint.rotation );
+	```
 	* Back in Unity hit play and observe your handiwork.
 #### 6.c - What happened?
 So physics right. The cannon shot is a 'massive' object and like in real life the cannon actually has to apply a force to the ball. Fortunately force can defy Newton's third law (if you want it to) and only apply force to the cannon shot.
@@ -168,22 +168,22 @@ So far the call to Fire has been written into the GunController's `Start` lifecy
 1. Create a new behaviour script; call it "InputWithAction" and add it as a component to any object in your scene. It's preferably to create a new empty object in the hierarchy to keep things tidy, but this component won't truly be a behaviour describing a game entity; rather a behaviour of the scene.
 1. Use the lifecycle method `Update` to check every cycle for a keypress (key up event preferably).
 	* A key event can be queried using the `Input` object and the static method `GetKeyUp` (depending on the event).
-		```csharp
-		Input.GetKeyUp( KeyCode.Space )
-		```
+	```csharp
+	Input.GetKeyUp( KeyCode.Space )
+	```
 1. Consider making the desired `KeyCode` a public property so it is visible in the [Inspector Window](https://docs.unity3d.com/Manual/UsingTheInspector.html).
 	* We could therefore reuse the behaviour for other input events on other objects.
 #### 7.b - Sending a message
 Because behaviours should be simple and not coupled to one another we will trigger the cannons `Fire` call using `UnityEvent`. This means we can reuse the behaviour to trigger any event that subscribes to this object.
 1. Declare at the top of the script you are using the `UnityEvent` object.
-		```csharp
-		using UnityEngine.Events;
-		```
+	```csharp
+	using UnityEngine.Events;
+	```
 1. Create a public property typed `UnityEvent` and call it "action".
 1. `If` the `Input` event is true this cycle, call `Invoke` on our "action" property.
-		```csharp
-		action.Invoke();
-		```
+	```csharp
+	action.Invoke();
+	```
 1. Back in the [Inspector Window](https://docs.unity3d.com/Manual/UsingTheInspector.html) click to add a new action.
 	* Drag-and-drop or select the object subscribing to that action. In this case the Gun object.
 	* Use the drop down list to find the `GunContrller.Fire` method.
@@ -221,9 +221,9 @@ All things must come to an end and cannon balls and explosions shouldn't last fo
 1. Within the scope of the lifecycle method `Start` use the method `Destroy` and refer to the local property `gameObject` (a convenient reference to the behaviour's `GameObject`). Second parameter the time in seconds.
 1. Create a second script called "DestroySelfOnCollision" and Add this to the cannon shot prefab.
 1. This behaviour has no public properties. Instead you will call `Destroy` on the behaviours `gameObject` when a collision event occurs.
-		```csharp
-		public void OnCollisionEnter( Collision collision )
-		```
+	```csharp
+	public void OnCollisionEnter( Collision collision )
+	```
 
 #### Extra
 * Try adding another mini blast display at the gun barrel when firing. There's a prefab in the `/Shared/Prefabs`.
