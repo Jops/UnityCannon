@@ -36,9 +36,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4117016837622118}
+  - component: {fileID: 114613399305748382}
   - component: {fileID: 198561720689542914}
   - component: {fileID: 199077661901121824}
-  - component: {fileID: 114613399305748382}
   m_Layer: 0
   m_Name: MuzzleSplosion
   m_TagString: Untagged
