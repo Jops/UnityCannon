@@ -8,12 +8,12 @@ Intended for engineers, but useful as an overview for designers. BBC D&E teams.
 
 ### Installing Unity
 1. Install Unity [here](https://unity3d.com/get-unity/download).
-1. Open project in Unity by [opening](https://answers.unity.com/questions/29138/how-do-i-open-an-existing-project-in-unity.html) the `Main.unity` file.
+1. To open a project in Unity follow [How to open an existing project](https://answers.unity.com/questions/29138/how-do-i-open-an-existing-project-in-unity.html).
 	* Alternatively use the Unity landing screen to "Open" and existing project.
 
 ### Installing dependencies
 #### Local dependencies
-1. *Check for a /Dependancies directory in the project. If present; continue.*
+1. **Check for a /Dependancies directory in the project. If present; continue.** If not, skip to [Remote dependencies](#remotedependencies).
 1. In the Unity IDE find your asset hierarchy view called the [Project Window](https://docs.unity3d.com/Manual/ProjectView.html).
 1. Right-click the top Assets folder and choose `Import Package > Custom Package` from the context menu.
 1. Use your directory navigator to find the './Dependancies' folder in the root of the project and select all `.unitypackage` files therein.
@@ -29,7 +29,7 @@ Intended for engineers, but useful as an overview for designers. BBC D&E teams.
 
 ### Opening main scene
 If Unity was opened via the landing screen then the project may have opened a default scene.
-You'll find the `Main.unity` in the directory `./Assets/_Src/Scenes`
+You'll find the completed Main scene `CompletedMain.unity` in the directory `./Assets/_Src/FINISHED/Scenes`.
 
 ### Running the app
 For this demonstration we won't be building the app to an executable, simply press the play button at the top of the application window.
@@ -66,7 +66,7 @@ Unique features of 3D objects, how they move, operate and live are controlled by
 	* This should rotate the 3D object by its y-axis by 10 degrees (euler angle) in relation to its world (think global) transformation matrix.
 1. To add the new component to the Cannon's Gun:
 	* Drag-and-drop your new script from the scripts folder to the 'UnfinishedCannon -> Gun' object in your scene (not in the project window `/Prefabs`).
-	* *OR* click on the Gun object in the scene and observe the [Inspector Window](https://docs.unity3d.com/Manual/UsingTheInspector.html). It has a `Add Component` button that gives you a search field you can use to find and add your new script by name.
+	* **OR** click on the Gun object in the scene and observe the [Inspector Window](https://docs.unity3d.com/Manual/UsingTheInspector.html). It has a `Add Component` button that gives you a search field you can use to find and add your new script by name.
 1. Click "Play" at the top of the Unity application window (The `Game` window should take focus and show you your scene from the view of the scene camera).
 	* Observe your Cannon's Gun is now rotating forever.
 
@@ -202,7 +202,7 @@ For this you'll need to have followed the [Remote dependencies](#remotedependenc
 #### 8.a - Spawn on collision
 1. You can have a try creating your own script referring to documentation for [Collider.OnCollisionEnter](https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html).
 	* Remembering to keep a public `GameObject` property for the explosion prefab object we'll want to instantiate on an collision event.
-	* *OR* find one I made earlier in the `/Shared/Scripts/Physics` folder named "SpawnOnCollision".
+	* **OR** find one I made earlier in the `/Shared/Scripts/Physics` folder named "SpawnOnCollision".
 1. Add that behaviour to the cannon shot *prefab* so it is present in every instantiation.
 #### 8.b - Prefabricated Explosions are in this year.
 1. In the `/Session/Prefabs` folder you'll find a prefab names `UnfinishedShotSplosion`. Drag this into your scene and see what it does.
@@ -212,7 +212,7 @@ For this you'll need to have followed the [Remote dependencies](#remotedependenc
 	* This should mean on collision the cannon shot will spawn an explosion display.
 #### 8.c - This needs some impact
 We are displaying an explosion when the cannon shot collides with something, but it's all display and no effect. We want to include another behaviour on the explosion prefab that creates a blast in physical location of the explosion.
-1. Again you can find a pre-made behaviour script in the `/Shared/Scripts/Physics` folder named "Splode" *OR* have a go writing your own with reference to documentation for [Rigidbody.AddExplosionForce](https://docs.unity3d.com/ScriptReference/Rigidbody.AddExplosionForce.html).
+1. Again you can find a pre-made behaviour script in the `/Shared/Scripts/Physics` folder named "Splode" **OR** have a go writing your own with reference to documentation for [Rigidbody.AddExplosionForce](https://docs.unity3d.com/ScriptReference/Rigidbody.AddExplosionForce.html).
 	* I find however a power of 500f gets things moving. Consider making this a public property to edit and test in your scene.
 #### 8.d.0 - Tidy yourself up
 All things must come to an end and cannon balls and explosions shouldn't last forever.
