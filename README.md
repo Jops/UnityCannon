@@ -1,6 +1,8 @@
 # UnityCannon
 Tutorial project intended as a light introduction to Unity.
 
+![Unity Cannon finished example](https://raw.githubusercontent.com/Jops/UnityCannon/master/images/promo.png)
+
 ## Audience
 Intended for engineers, but useful as an overview for designers. BBC D&E teams.
 
